@@ -1,0 +1,12 @@
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\bin\Debug\PregatireExamen.exe.config
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\bin\Debug\PregatireExamen.exe
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\bin\Debug\PregatireExamen.pdb
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\obj\Debug\PregatireExamen.csproj.AssemblyReference.cache
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\obj\Debug\PregatireExamen.csproj.SuggestedBindingRedirects.cache
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\obj\Debug\PregatireExamen.AddDoctor.resources
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\obj\Debug\PregatireExamen.Form1.resources
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\obj\Debug\PregatireExamen.Properties.Resources.resources
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\obj\Debug\PregatireExamen.csproj.GenerateResource.cache
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\obj\Debug\PregatireExamen.csproj.CoreCompileInputs.cache
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\obj\Debug\PregatireExamen.exe
+D:\CSIE\Y2S2\Windows Application Programming - C#\PregatireExamen\PregatireExamen\obj\Debug\PregatireExamen.pdb

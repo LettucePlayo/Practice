@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ArrayOfDoctor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Doctor>
+    <id>12132</id>
+    <name>caca</name>
+    <birthDate>1989-01-01T20:12:44</birthDate>
+    <wage>2323</wage>
+    <IdSpecialty>10</IdSpecialty>
+  </Doctor>
+  <Doctor>
+    <id>2</id>
+    <name>Bambucea</name>
+    <birthDate>1966-08-19T20:13:12</birthDate>
+    <wage>9000</wage>
+    <IdSpecialty>10</IdSpecialty>
+  </Doctor>
+  <Doctor>
+    <id>3</id>
+    <name>Paz</name>
+    <birthDate>1959-07-16T20:13:48</birthDate>
+    <wage>8000</wage>
+    <IdSpecialty>10</IdSpecialty>
+  </Doctor>
+</ArrayOfDoctor>

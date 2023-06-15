@@ -1,0 +1,24 @@
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\bin\Debug\MedicalClinic.exe.config
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\bin\Debug\MedicalClinic.exe
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\bin\Debug\MedicalClinic.pdb
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\obj\Debug\MedicalClinic.csproj.AssemblyReference.cache
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\obj\Debug\MedicalClinic.AddDoctor.resources
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\obj\Debug\MedicalClinic.Form1.resources
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\obj\Debug\MedicalClinic.Properties.Resources.resources
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\obj\Debug\MedicalClinic.csproj.GenerateResource.cache
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\obj\Debug\MedicalClinic.csproj.CoreCompileInputs.cache
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\obj\Debug\MedicalClinic.exe
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\obj\Debug\MedicalClinic.pdb
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\MedicalClinic\obj\Debug\MedicalClinic.EditDoctor.resources
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\bin\Debug\MedicalClinic.exe.config
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\bin\Debug\MedicalClinic.exe
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\bin\Debug\MedicalClinic.pdb
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\obj\Debug\MedicalClinic.csproj.AssemblyReference.cache
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\obj\Debug\MedicalClinic.AddDoctor.resources
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\obj\Debug\MedicalClinic.EditDoctor.resources
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\obj\Debug\MedicalClinic.Form1.resources
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\obj\Debug\MedicalClinic.Properties.Resources.resources
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\obj\Debug\MedicalClinic.csproj.GenerateResource.cache
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\obj\Debug\MedicalClinic.csproj.CoreCompileInputs.cache
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\obj\Debug\MedicalClinic.exe
+C:\eu\facultate\anu2\sem2\wap\MedicalClinic\obj\Debug\MedicalClinic.pdb

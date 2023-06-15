@@ -1,0 +1,24 @@
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\obj\Debug\ExamPractice1.csproj.AssemblyReference.cache
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\obj\Debug\ExamPractice1.AddDoctor.resources
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\obj\Debug\ExamPractice1.Form1.resources
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\obj\Debug\ExamPractice1.Properties.Resources.resources
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\obj\Debug\ExamPractice1.csproj.GenerateResource.cache
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\obj\Debug\ExamPractice1.csproj.CoreCompileInputs.cache
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\bin\Debug\ExamPractice1.exe.config
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\bin\Debug\ExamPractice1.exe
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\bin\Debug\ExamPractice1.pdb
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\obj\Debug\ExamPractice1.exe
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\obj\Debug\ExamPractice1.pdb
+D:\Facultate stuff\Anul II\SEM II\WAP\Exam\ExamPractice1\obj\Debug\ExamPractice1.EditForm.resources
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\bin\Debug\ExamPractice1.exe.config
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\bin\Debug\ExamPractice1.exe
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\bin\Debug\ExamPractice1.pdb
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\obj\Debug\ExamPractice1.csproj.AssemblyReference.cache
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\obj\Debug\ExamPractice1.AddDoctor.resources
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\obj\Debug\ExamPractice1.EditForm.resources
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\obj\Debug\ExamPractice1.Form1.resources
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\obj\Debug\ExamPractice1.Properties.Resources.resources
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\obj\Debug\ExamPractice1.csproj.GenerateResource.cache
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\obj\Debug\ExamPractice1.csproj.CoreCompileInputs.cache
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\obj\Debug\ExamPractice1.exe
+C:\eu\facultate\anu2\sem2\wap\ExamPractice1\obj\Debug\ExamPractice1.pdb

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ArrayOfDoctor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Doctor>
+    <Id>3</Id>
+    <Name>Andrei</Name>
+    <BirthDate>1965-07-22T17:44:55</BirthDate>
+    <Wage>2009.1</Wage>
+    <IdSpecialty>2</IdSpecialty>
+  </Doctor>
+  <Doctor>
+    <Id>4</Id>
+    <Name>Andrei</Name>
+    <BirthDate>1989-06-21T17:51:40</BirthDate>
+    <Wage>7800</Wage>
+    <IdSpecialty>3</IdSpecialty>
+  </Doctor>
+  <Doctor>
+    <Id>1</Id>
+    <Name>Dr.Dre</Name>
+    <BirthDate>1989-01-09T17:43:37</BirthDate>
+    <Wage>15000</Wage>
+    <IdSpecialty>1</IdSpecialty>
+  </Doctor>
+  <Doctor>
+    <Id>2</Id>
+    <Name>Razvan</Name>
+    <BirthDate>1989-06-13T17:44:39</BirthDate>
+    <Wage>1900.25</Wage>
+    <IdSpecialty>3</IdSpecialty>
+  </Doctor>
+</ArrayOfDoctor>

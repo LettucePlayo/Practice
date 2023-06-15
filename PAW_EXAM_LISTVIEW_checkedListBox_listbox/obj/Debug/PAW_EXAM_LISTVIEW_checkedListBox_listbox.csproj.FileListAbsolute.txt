@@ -1,0 +1,11 @@
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\bin\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.exe.config
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\bin\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.exe
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\bin\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.pdb
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\obj\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.csproj.AssemblyReference.cache
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\obj\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.AddDoctor.resources
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\obj\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.Form1.resources
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\obj\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.Properties.Resources.resources
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\obj\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.csproj.GenerateResource.cache
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\obj\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.csproj.CoreCompileInputs.cache
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\obj\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.exe
+C:\Users\Alex\source\repos\PAW_EXAM_LISTVIEW_checkedListBox_listbox\obj\Debug\PAW_EXAM_LISTVIEW_checkedListBox_listbox.pdb

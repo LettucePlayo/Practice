@@ -1,0 +1,35 @@
+You are asked to develop a Windows Forms application for a medical clinic.
+
+(1p) 
+
+  Define the Specialty class with the properties Id (int) and Name (string). Define the Doctor class with the properties Id (int), Name (string), BirthDate (DateTime), Wage (decimal) and IdSpecialty (int). The classes should contain parametrized constructors.
+
+  The specialities will be loaded from the Specialities.txt file. The text file should be created using a text editor at your choice and should contain at least three entries.
+
+ (2p)
+
+  The instances of the Doctor class will be added using a secondary form, in which the user will be able to optionally choose the specialty of the doctor using a ListBox control.
+
+  The following validations will be performed: the age of the doctor should be at least 25 and bellow 70, the name should be at least 3 characters long, wage>=0, numeric. The validation errors will be displayed next to the corresponding fields when the user changes the focus to another control, as well as when the user clicks the “Add” button. The application should not crash if the user inputs invalid information.
+
+  The instances of the class will be stored in a List<T> collection and will be displayed in the main form using a ListView control, configured to look similar to a table.
+
+(1p)
+
+  The user will have the possibility to delete doctors (add a “Delete” button to the main form) and also to edit them (by double clicking on the corresponding row). The user should be able to select an entry in the list by clicking anywhere inside the corresponding row (not only on the first column). Editing the information for a doctor should be performed in a secondary form.
+
+(2p)
+
+§  The list of doctors will be automatically loaded when the application starts with the values retrieved from a database (Access, SQLServer sau SQLite). All the operations (add, update, delete) will be persisted to the database.
+
+(1p)
+
+  Add a toolbar to the application, allowing the user to export the list of doctors in XML format. The name and the location of the XML file will be chosen using a SaveFileDialog.
+
+(1p)
+
+§  Implement the IComparer<T> / IComparer interface in order to sort the doctors in either ascending order based on their Name, or in descending order based on their BirthDate. The user will be able to choose the current sorting order from a contextual menu.
+
+(1p)
+
+§  Allow the user to print a list with all the doctors and their assigned specialties. The user should be able to preview the list and to make changes to the page settings.

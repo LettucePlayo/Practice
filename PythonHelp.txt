@@ -1,0 +1,675 @@
+[21:50, 30/06/2023] Robert Rosu: import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+# Task 1 and 2
+industries = pd.read_csv('Industrie.csv')
+population = pd.read_csv('PopulatieLocalitati.csv')
+
+industries_with_population = industries.merge(population, on='Siruta')
+
+activities = ['Alimentara', 'Textila', 'Lemnului', 'ChimicaFarmaceutica', 'Metalurgica', 'ConstructiiMasini', 'CalculatoareElectronica', 'Mobila', 'Energetica']
+
+for activity in activities:
+    industries_with_population[activity] = industries_with_population[activity] / industries_with_population['Populatie']
+
+industries_with_population.to_csv('Cerinta1.csv')
+
+county_activity = industries_with_population.groupby('Judet')[activities].sum().idxmax(axis=1)
+county_turnover = industries_with_population.groupby('Judet')[activities].sum().max(axis=1)
+
+result = pd.DataFrame({'Siruta': county_activity.index, 'Dominant Activity': county_activity.values, 'Turnover': county_turnover.values})
+result.to_csv('Cerinta2.csv')
+
+# Task 3 to 5
+data = pd.read_csv('DataSet_34.csv')
+
+production = ['prodPorc', 'prodVite', 'prodOaieSiCapra', 'prodPasareDeCurte']
+consumption = ['consPorc', 'consVita', 'consumOaieSiCapra', 'consPasareDeCurte']
+
+scaler = StandardScaler()
+data[production] = scaler.fit_transform(data[production])
+data[consumption] = scaler.fit_transform(data[consumption])
+
+data[production].to_csv('Xstd.csv')
+data[consumption].to_csv('Ystd.csv')
+
+# Task 6
+plt.scatter(data[production], data[consumption])
+plt.xlabel('Production')
+plt.ylabel('Consumption')
+plt.show()
+[21:50, 30/06/2023] Robert Rosu: In fisieral Industrie.co se afla informati privind cifra de afaceri pentra activitati industriale la nivel de localitate. Informatiile sunt urmätoarele:
+Siruta - Codul Sirata al localitapii;
+Localitate - Denumirea localititi:
+ChimicaFarmaceutica,
+ConstructiMasini,
+CalculatoareElectronica, Mobila, Energenca - Activitatile industriale cu cifra de afnceri.
+In fisierul Populatielocalitati cv se afla popularia pe localitati si indicativele de judet pentru fiecare localitate.
+Cerinte:
+1. Sa se salveze in fisieral Cerintal.esv cifia de afaceri pe locuitor pentru fiecare activitate, la nivel de localitate.
+Pentru fiecare localitate se va salva codul Siruta, mmele locnlitatii si cifra de afaceri pe locuitor pentru fiecare activitate. (2 puncte)
+Exemplu:
+Localitate, Alimentara, Texcala, Lemulu, ChimicaFarmaceutica, Metalurgica, Constructil
+32768, Budesti,0.0,0.0,0,0,0.0,0.90.0,0.0,0.0,0.0
+49153, Sahatens/0.0,0.0,040,9-0,039
+0.0, 0. 0, 0, 0,0.0
+57350, Cojocna, 259
+18394843638 0 06030796020297
+0.0,0.0,143.19837670088327,
+2. Sã se calculeze si sã se salveze in fisierul Cerinta2 esv activitatea industriala dominanta (cu cifra de afaceri cea mai mare) cu cifra de afaceri corespunzitoare, la nivel de judet,. Pentru fiecare judet se va afiga indicatival de judet, activitatea dominantà si cifia de afaceri corespunzatoare. (2 puncte)
+Exempl
+Judet, Activitate, Citra Atacer!
+ab, Lemnulut, 3749416915.0
+ag, ConstructidMasini, 23044786532.0
+B. Si se efectueze clasificarea cladirilor din centru vechi al Bucurestilor dupà diversi indicatori de vulnerabilitate si de utilizare. Variabilele predictor sunt: An Constructie - anul constructiei, Numar Etaje - numär etaje, Monument
+- cod numeric ce aratil dacã este monument sau nu, Structuralip - cod numeric ce aratà tipul de structura, RiscZidarie - cod numeric ce indica riscuri de zidarie, RiseStructura - cod numeric ce indicà riscuri de structurà, NrApartamente - numar de apartamente din cladire, NrPersoaneZiua - numár de persoune care locuiesc in cladire ziua, NrPersoaneNoaptea - numar de persoane ce locuiese in cladire noaptea, NrAngajati - numar de personne ce-si desfâsoari activitate ca angajat in cladire, Nrl'Eiratori - numár mediu de vizitatori zilnic in cladire (pentru muzee etc.). Variabila tinta este: VULNERAB. clasa de vulnerabilitate a cladirii. Poate aven valorile A, B. C. D.
+E, F. G.
+Setul de invatare-testare este ProiectB. cv. Setul de aplicare este ProtectB apply.esv.
+Cerinte:
+I. Sa se aplice analiza liniara discriminanta si sã se calculeze scorurile discriminante. Acestea vor fi salvate in fisierul =.csv. (1 punct)
+Criteriu de acordare a punctajului: vizualizarea fisieralui output.
+2. Sã se traseze graficul scorurilor discriminante in primele dous axe discriminante. (2 puncte)
+Criteriu de acordare a punctajului: vizualizarea graficulus.
+3. Sa se efectueze predictile atat in setul de invatare-testare cât si in setul de aplicare. Predictiile vor fi salvate in fisierele predict test.esv si predict apply.esv. (2 puncte)
+Criteriu de acordare a punctajului: vizunlizarea fisierelor output.
+15.27
+[21:50, 30/06/2023] Robert Rosu: import pandas as pd
+import numpy as np
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+import matplotlib.pyplot as plt
+
+# Load the data
+industries = pd.read_csv('Industrie.csv')
+populations = pd.read_csv('Populatielocalitati.csv')
+
+# Compute turnover per inhabitant for each activity
+activities = ['Alimentara', 'Textila', 'Lemnului', 'ChimicaFarmaceutica', 'Metalurgica', 'ConstructiiMasini', 'CalculatoareElectronica', 'Mobila', 'Energetica']
+industries_populations = pd.merge(industries, populations, on='Siruta')
+for activity in activities:
+    industries_populations[activity] /= industries_populations['Populatie']
+industries_populations.to_csv('Cerinta1.csv')
+
+# Compute dominant industrial activity per county
+county_activities = industries_populations.groupby('Judet')[activities].sum()
+county_activities['DominantActivity'] = county_activities.idxmax(axis=1)
+county_activities['Turnover'] = county_activities.max(axis=1)
+county_activities[['DominantActivity', 'Turnover']].to_csv('Cerinta2.csv')
+
+# Linear Discriminant Analysis
+train_test_data = pd.read_csv('ProiectB.csv')
+apply_data = pd.read_csv('ProiectB_apply.csv')
+predictor_vars = ['AnConstructie', 'NumarEtaje', 'Monument', 'StructuraTip', 'RiscZidarie', 'RiscStructura', 'NrApartamente', 'NrPersoaneZiua', 'NrPersoaneNoaptea', 'NrAngajati', 'NrVizitatori']
+target_var = 'VULNERAB'
+lda = LinearDiscriminantAnalysis()
+lda.fit(train_test_data[predictor_vars], train_test_data[target_var])
+
+# Compute discriminant scores
+scores = lda.transform(train_test_data[predictor_vars])
+np.savetxt("scores.csv", scores, delimiter=",")
+
+# Plot the scores on the first two discriminant axes
+plt.figure(figsize=(10, 7))
+plt.scatter(scores[:, 0], scores[:, 1], c=train_test_data[target_var])
+plt.xlabel('First Discriminant Function')
+plt.ylabel('Second Discriminant Function')
+plt.title('Plot of Points in First Two Discriminant Functions')
+plt.show()
+
+# Perform predictions
+train_test_data['Predicted'] = lda.predict(train_test_data[predictor_vars])
+apply_data['Predicted'] = lda.predict(apply_data[predictor_vars])
+train_test_data[['Predicted']].to_csv('predict_test.csv')
+apply_data[['Predicted']].to_csv('predict_apply.csv')
+[21:50, 30/06/2023] Robert Rosu: in fisieral Vot. csv este prezentatà structura votului pe categorii de varsta, la nivelul localitatilor, pentru alegerile din 2020. Variabile:
+Sirita - codul Siruta;
+Localitate - denumirea localitätii;
+Barbari 18-24, Barbari 25.34, Barbati 35-44, Barbati 45.64, Barbati 65 , Femei 18-24, Femei 25.34, Femei 35-44, Femei 45.64, Femet 65 - categori de alegitori pe grupe de varstã. in fisierul Coduri Localitatics se afla codificarile Siruta pentru localitäti si judetele de care apartin. Valorile reprezintà procente.
+A. Sa se implementeze urmatoarele cerinte:
+1. Salvarea in fisieral cerintal. esv a categoriei de alegatori pentru care s-a inregistrat cel mai mic procent de prezentà la vot. Se va salva codul Siruta, numele localitátii si categoria de alegatori. (I
+punct
+Exemplu:
+Siruta, Localitate, Categorie
+1017, Municipiul Alba Julia, Femel 18-24
+Criteriu de acordare a punctajului: vizualizarea fisierului output.
+2. Salvarea in fisieral cerinta2.cs a valorilor medii la nivel de judet. Se va salva indicativul judefului si valorile medi pentru fiecare categorie. (2 puncte)
+Eremplu:
+County, Barbati_ 18-24,..., Fenel_65
+ab,5.156153846153846,.,11.016923076923078
+Criteriu de acordare a punctajului: vizualizarea fisieralui output.
+B. Sa se efectueze analiza de factoriala, fará rotatie de factori, pentru structura votului si sã se fumizeze urmätoarele rezultate:
+1. Aplicarea testului Bartlett de relevant. Se va calcula si se va afisa pragul de semnificatie asociat respingerii/acceptári testului (p-value). (I punct)
+Criteriu de acordare a punctajului: afisarca corectá a valorii.
+2. Scorurile factoriale. Vor fi salvate in fisierul fesv. (2 puncte)
+Criteriu de acordare a punctajului: vizualizarea fisierului output.
+3. Graficul scorurilor factoriale pentru primii doi factori. (3 puncte)
+Criterin de acordare a punctajului: vizualizarea graficului.
+[21:50, 30/06/2023] Robert Rosu: import numpy as np
+import pandas as pd
+
+industrii = pd.read_csv('./dataIN/Industrie.csv', index_col=0)
+print(industrii)
+
+denumireIndustrii=list(industrii.columns[1:])
+print(denumireIndustrii)
+
+populatii = pd.read_csv('./dataIN/PopulatieLocalitati.csv', index_col=0)
+print(populatii)
+
+mergedIndustrii = industrii.merge(right=populatii, left_on='Siruta', right_on='Siruta');
+print(mergedIndustrii)
+
+mergedIndustrii.drop(columns=['Localitate_y'])
+print(mergedIndustrii);
+
+# Cerinta1
+def calcCifraAfaceri(t, denumireIndustrii, populatie='Populatie'):
+    cifraAfaceri = t[denumireIndustrii].values/t[populatie]
+    listaCifraAfaceri = list(cifraAfaceri);
+    listaCifraAfaceri.insert(0,t['Localitate_x'])
+    return pd.Series(data=listaCifraAfaceri, index=['Localitate'] + denumireIndustrii)
+
+answer = mergedIndustrii.apply(func=calcCifraAfaceri, axis=1, denumireIndustrii=denumireIndustrii)
+print(answer)
+answer.to_csv('./dataOUT/Cerinta1.csv')
+
+
+# Cerinta 2
+groupedJuded = mergedIndustrii[['Judet'] + denumireIndustrii].groupby(by='Judet').agg(sum);
+print(groupedJuded)
+
+def calcActivDominant(t):
+    maximLinie = np.argmax(t)
+    # print(t.index[maximLinie])
+    return pd.Series(data=[t.index[maximLinie], t.values[maximLinie]], index=['Indrustrie','Cifra de afaceri'])
+
+answer2=groupedJuded.apply(func=calcActivDominant, axis=1)
+print(answer2)
+answer2.to_csv('./dataOUT/Cerinta2.csv')
+
+
+#Cerinta inventata - aprox cu ce am avut la examen
+# Pentru fiecare judet sa se salveze localitatea cu cea mai mare cifra medie afaceri
+print(mergedIndustrii)
+
+def calcCifraAfaceri2(t, denumireIndustrii, populatie='Populatie'):
+    #Calculezi cifra de afaceri
+    cifraAfaceri = t[denumireIndustrii].values/t[populatie]
+    # Faci mean-ul
+    average=np.mean(cifraAfaceri)
+    # Bagi plm intr-o serie care va inlocui randul din dataframe primit ca parametru
+    return pd.Series(data=[t['Judet'] , t['Localitate_x'] , average], index=['Judet', 'Localitate', 'Average'])
+
+#Pentru fiecare linie iei toate coloanele si aplici functia
+cifreCuJudet = mergedIndustrii.apply(func=calcCifraAfaceri2, axis=1, denumireIndustrii=denumireIndustrii )
+print(cifreCuJudet)
+# cifreCuJudet.to_csv('./dataOUT/cifreCuJudet.csv')
+
+#Cream un dataframe cu nimic ca si continut, doar coloane
+answer3=pd.DataFrame(data=None,columns=['Localitate', 'Average'])
+print(answer3)
+
+# Pentru fiecare judet unic
+for judet in cifreCuJudet['Judet'].unique():
+
+#Iei toate localitatile judetului
+    judet_data = cifreCuJudet[cifreCuJudet['Judet']==judet]
+    # print('Judetul este: ' , judet)
+    # print('Datele sunt: ')
+    # print(judet_data)
+# Le grupezi apoi si pastrezi maximul
+    judetGrouped = judet_data.groupby(by='Judet').agg(max)
+    # print(judetGrouped)
+# Le adaugi la un dataframe existent (grija la denumirea coloanelor)
+    answer3= pd.concat([answer3,judetGrouped])
+
+print(answer3)
+#Poate fi salvat si in csv
+answer3.to_csv('./dataOUT/CerintaInventata.csv')
+[21:50, 30/06/2023] Robert Rosu: import pandas as pd
+from factor_analyzer import FactorAnalyzer, calculate_bartlett_sphericity
+import matplotlib.pyplot as plt
+
+# Load the data
+vot = pd.read_csv('Vot.csv')
+coduri = pd.read_csv('Coduri_Localitati.csv')
+
+# Task A1: Find the category with the lowest voting turnout and save it to 'cerinta1.csv'
+vot['min_category'] = vot.iloc[:, 2:].idxmin(axis=1)
+min_category_vot = vot[['Siruta', 'Localitate', 'min_category']]
+min_category_vot.to_csv('cerinta1.csv', index=False)
+
+# Task A2: Calculate the average values at the county level and save it to 'cerinta2.csv'
+vot = vot.merge(coduri, on='Siruta', how='left')
+mean_vot = vot.groupby('County').mean()
+mean_vot.to_csv('cerinta2.csv')
+
+# Task B1: Apply Bartlett's test of sphericity
+chi_square_value, p_value = calculate_bartlett_sphericity(vot.iloc[:, 2:-1])
+print('Chi-square value:', chi_square_value)
+print('p value:', p_value)
+
+# Task B2: Compute the factorial scores and save them to 'f.csv'
+fa = FactorAnalyzer(rotation=None)
+fa.fit(vot.iloc[:, 2:-1])
+scores = fa.transform(vot.iloc[:, 2:-1])
+scores_df = pd.DataFrame(scores)
+scores_df.to_csv('f.csv', index=False)
+
+# Task B3: Visualize the factorial scores for the first two factors
+plt.figure(figsize=(10, 10))
+plt.scatter(scores[:, 0], scores[:, 1])
+plt.xlabel('Factor 1')
+plt.ylabel('Factor 2')
+plt.title('Factorial Scores for the First Two Factors')
+plt.show()
+[21:50, 30/06/2023] Robert Rosu: #DSAD Exam
+
+import numpy as np
+import pandas as pd
+import scipy.cluster.hierarchy as hic
+import scipy.spatial.distance as dis
+import matplotlib.pyplot as plt
+
+
+
+# Reading the input data
+inFile = 'Dataset_43.csv'
+
+#Generating the pandas Dataframe
+table = pd.read_csv(inFile, index_col=0, na_values='')
+# print(table)
+obsName = table.index[:]
+# print(obsName)
+
+#Defining the ploting methods:
+def dendrogram(h, labels, title='Hierarchical Classification', threshold=None):
+    plt.figure(figsize=(16, 9))
+    plt.title(title, fontsize=12, color='k')
+    hic.dendrogram(h, labels=labels, leaf_rotation=90)
+    if threshold:
+        plt.axhline(threshold, c='r')
+        print('--------------Printing the threshold-------------------')
+        print(threshold)
+        print('-------------------------------------------------------')
+
+
+def display():
+    plt.show()
+
+# Defining the auxiliary methods for replacing the null values, standardizing the data, computing the treshold
+
+def replaceNaN(X):
+    avg = np.nanmean(X, axis=0)
+    print(avg)
+    posNaN = np.where(np.isnan(X))
+    X[posNaN] = avg[posNaN[1]]
+    return X
+
+
+def standardize(X):
+    avg = np.mean(X, axis=0)
+    std = np.std(X, axis=0)
+    Xstd = (X - avg) / std
+    return Xstd
+
+
+# Computing the value of the threshold
+def threshold(h):
+    # the number of maximum junctions
+    m = np.shape(h)[0]  # computing the total number of rows
+    dist_1 = h[1:m, 2]  # computing the distances, besides the first row -> for the second column only
+    dist_2 = h[0:m - 1, 2]  # computing the distances, besides the last row -> for the second column only
+    diff = dist_1 - dist_2
+    j = np.argmax(diff)
+    threshold = (h[j, 2] + h[j + 1, 2]) / 2
+    return threshold, j, m
+
+
+# Determine the clusters of the maximum stability partition
+def clusters(h, k):
+    n = np.shape(h)[0] + 1
+    g = np.arange(0, n)
+    for i in range(n - k):
+        k1 = h[i, 0]
+        k2 = h[i, 1]
+        g[g == k1] = n + i
+        g[g == k2] = n + i
+    cat = pd.Categorical(g)
+    print('--------------------------')
+    print(cat)
+    print('--------------------------')
+    return ['C'+str(i) for i in cat.codes], cat.codes
+
+
+# Creating a ndarray which contains only the numerical data
+Xraw = table.select_dtypes(include=np.number)
+Xraw = table.iloc[:, 3:].values
+varName = table.columns[3:]
+print(varName)
+# print(len(varName))
+print(Xraw)
+
+# Replacing the null values, if the case
+Xnew = replaceNaN(Xraw)
+
+# Standardizing the values from the dataset
+X = standardize(Xnew)
+
+# Printing the list of available methods for clustering
+methods = list(hic._LINKAGE_METHODS)
+# print(methods)
+
+# Printing the list of distances to be used for clustering
+dists = dis._METRICS_NAMES
+# print(dists)
+
+# Computing the Ward-Euclidian Clustering
+HC_1 = hic.linkage(X, method=methods[5], metric=dists[7])
+a1, b1, c1 = threshold(HC_1)
+print(HC_1)
+print(a1, b1, c1)
+# Computing the optimum number of clusters
+k1 = c1 - b1
+
+# Computing the Complete Correlation Clustering
+HC_2 = hic.linkage(X, method=methods[1], metric=dists[4])
+a2, b2, c2 = threshold(HC_2)
+# print(HC_2)
+print(a2, b2, c2)
+k2 = c2 - b2
+
+
+
+# Computing the clusters belonging to the maximum stability partition --> Corresponding to the complete  method
+lbl1, codes1 = clusters(HC_1, k1)
+lbl2, codes2 = clusters(HC_2, k2)
+
+# Saving the partition of maximum stability in an output file
+Cluster1 = pd.DataFrame(data=lbl1, index=obsName, columns=['Cluster'])
+Cluster2 = pd.DataFrame(data=lbl2, index=obsName, columns=['Cluster'])
+
+# print(Cluster1)
+# print(Cluster2)
+Cluster1.to_csv('OptimalPartition.csv')
+# Cluster1.to_csv('OptimalPartition_2.csv')
+
+
+#Ploting the results
+dendrogram(HC_1, labels=obsName, title='Hierarchical Classification ' + methods[5].capitalize() + ' --> '
+                                           + dists[7].capitalize(), threshold=a1)
+dendrogram(HC_2, labels=obsName, title='Hierarchical Classification ' + methods[1].capitalize() + ' --> '
+              + dists[4].capitalize(), threshold=a2)
+
+display()
+
+
+
+import pandas as pd
+import numpy as np
+from pandas.api.types import is_numeric_dtype
+
+education_table = pd.read_csv('Education.csv', index_col=0)
+#print(education_table)
+#education_table['County'] =
+
+def replaceNAN(t):
+    assert isinstance(t, pd.DataFrame)
+    var = list(t.columns)
+    for var1 in var:
+        if any(t[var1].isna()):
+            if is_numeric_dtype(t[var1]):
+                t[var1].fillna(t[var1].mean(), inplace=True)
+            else:
+                mod = t[var1].mode()[0]
+                t[var1].fillna(mod,inplace=True)
+def weightedAvg(t,pond,val):
+    assert isinstance(t, pd.DataFrame)
+    return np.average(t[val],weights=t[pond])
+
+
+local_pop = pd.read_csv('LocalitiesPopulation.csv', index_col=0)
+#print(local_pop)
+pop =pd.read_csv('RO_NUTS.csv', index_col=0)
+#print(pop)
+pop['CountyName'] = pop['CountyName'].str.lower()
+print(pop)
+
+
+# Requirement no. 1
+county_high_ed = education_table.merge(right=pop, left_on='County', right_on='CountyName', right_index=True)
+print(county_high_ed)
+columns = ['County', 'Faculty', 'Highschool']
+#c2
+
+
+# Requirement no. 2
+county_def_ed = education_table.merge(right=pop,left_on='County', right_on='CountyName', right_index=True)
+[21:50, 30/06/2023] Robert Rosu: import pandas as pd
+import numpy as np
+import sklearn.cross_decomposition as skl
+import matplotlib.pyplot as plt
+
+t_ind = pd.read_csv('./dataIN/Industrie.csv', index_col=0);
+t_pop = pd.read_csv('./dataIN/PopulatieLocalitati.csv', index_col=0);
+
+#CERINTA 1
+
+t1 = t_ind.merge(right=t_pop, left_index=True, right_index=True)
+industrii = list(t_ind.columns[1:])
+
+def caLoc(t, variabile, populatie):
+    x = t[variabile].values / t[populatie]
+    v = list(x)
+    v.insert(0, t['Localitate_x'])
+    return pd.Series(data=v, index=['Localitate'] + variabile)
+
+t2 = t1[['Localitate_x', 'Populatie']+ industrii ].apply(func=caLoc, variabile=industrii,axis=1,
+                                                       populatie='Populatie')
+t2.to_csv('./dataOUT/Cerinta1.csv')
+
+#CERINTA 2
+
+t3 = t1[industrii + ['Judet']].groupby(by='Judet').agg(sum)
+
+def maxCA(t) :
+    x = t.values
+    max_linie = np.argmax(x)
+    return pd.Series(data=[t.index[max_linie], x[max_linie]], index=['Activitate', 'Cifra  Afaceri'])
+
+t4 = t3[industrii].apply(func=maxCA, axis=1)
+t4.to_csv("./dataOUT/Cerinta2.csv")
+
+#CERINTA 3
+
+tabel = pd.read_csv('./dataIN/DataSet_34.csv', index_col=0)
+obs_nume = tabel.index.values
+var_nume = tabel.columns.values
+X_coloane = var_nume[:4]
+Y_coloane = var_nume[4:]
+
+X = tabel[X_coloane].values
+Y = tabel[Y_coloane].values
+
+def standardizare(x):
+
+    medii = np.mean(x, axis=0)
+    abateri = np.std(x, axis=0)
+    return (x-medii)/abateri
+
+Xstd = standardizare(X)
+Xstd_df = pd.DataFrame(data=Xstd, index=obs_nume, columns=X_coloane);
+Xstd_df.to_csv('./dataOUT/Xstd.csv')
+
+Ystd = standardizare(Y)
+Ystd_df = pd.DataFrame(data=Ystd, index=obs_nume, columns=Y_coloane);
+Ystd_df.to_csv('./dataOUT/Ystd.csv')
+
+#CERINTA 4
+#-CREARE MODEL ACC
+n, p = np.shape(X) #lasam doar shape de X pentru ca vrem sa luam si numarul de linii si nr de coloane, daca vrem doar nr de linii am pune [0]
+q = np.shape(Y)[1] #punem 1 pt ca vrem numarul de coloane, deoarece numarul de linii este egal pt ambele tabele si l-am salvat deja in n
+m = min(p,q)
+
+modelACC = skl.CCA(n_components=m)
+modelACC.fit(X=Xstd, Y=Ystd)
+
+#Varianta 1 pt aflare scoruri canonice
+# z = modelACC._x_scores
+# u = modelACC._y_scores
+
+#Varianta 2
+z,u = modelACC.transform(X=Xstd, Y=Ystd)
+
+z_df = pd.DataFrame(data=z, index=obs_nume, columns=('z' + str(j+1) for j in range(p)))
+u_df = pd.DataFrame(data=u, index=obs_nume, columns=('u' +str(j+1) for j in range(q)))
+z_df.to_csv("./dataOUT/Xscores.csv")
+u_df.to_csv("./dataOUT/Yscores.csv")
+
+#CERINTA 5
+
+Rxz = modelACC.x_loadings_
+Rxz_df = pd.DataFrame(data=Rxz, index=X_coloane, columns = ('z' + str(j+1) for j in range(p)))
+Rxz_df.to_csv('./dataOUT/Rxz.csv')
+Ryu = modelACC.y_loadings_
+Ryu_df = pd.DataFrame(data=Ryu, index=Y_coloane, columns=('u' +str(j+1) for j in range(q)))
+Ryu_df.to_csv('./dataOUT/Ryu.csv')
+
+#CERINTA 6
+
+def biplot(x,y, xLabel='X', yLabel='Y', titlu='Biplot', e1=None, e2=None):
+    f = plt.figure(figsize=(10,7))
+    ax = f.add_subplot(1, 1, 1)
+    assert isinstance(ax, plt.Axes)
+    ax.set_title(titlu, fontsize=14)
+    ax.set_xlabel(xLabel)
+    ax.set_ylabel(yLabel)
+    ax.scatter(x=x[:, 0], y=x[:, 1], c='r', label='Set x')
+    ax.scatter(x=y[:, 0], y=y[:, 1], c='b', label='Set Y')
+    if e1 is not None:
+        for i in range(len(e1)):
+            ax.text(x=x[i, 0], y=x[i, 1], s=e1[i])
+
+    if e2 is not None:
+        for i in range(len(e2)):
+            ax.text(x=y[i, 0], y=y[i, 1], s=e2[i])
+    ax.legend()
+
+biplot(z[:, :2], u[:, :2],titlu='Biplot tari in spatiul radacinilor canonice',
+       xLabel='(z1,u1)', yLabel = '(z2,u2)', e1=list(obs_nume), e2=list(obs_nume))
+plt.show()
+
+[21:50, 30/06/2023] Robert Rosu: import pandas as pd
+import numpy as np
+import sklearn.cross_decomposition as skl
+import matplotlib.pyplot as plt
+
+t_ind = pd.read_csv('./dataIN/Industrie.csv', index_col=0);
+t_pop = pd.read_csv('./dataIN/PopulatieLocalitati.csv', index_col=0);
+
+#CERINTA 1
+
+t1 = t_ind.merge(right=t_pop, left_index=True, right_index=True)
+industrii = list(t_ind.columns[1:])
+
+def caLoc(t, variabile, populatie):
+    x = t[variabile].values / t[populatie]
+    v = list(x)
+    v.insert(0, t['Localitate_x'])
+    return pd.Series(data=v, index=['Localitate'] + variabile)
+
+t2 = t1[['Localitate_x', 'Populatie']+ industrii ].apply(func=caLoc, variabile=industrii,axis=1,
+                                                       populatie='Populatie')
+t2.to_csv('./dataOUT/Cerinta1.csv')
+
+#CERINTA 2
+
+t3 = t1[industrii + ['Judet']].groupby(by='Judet').agg(sum)
+
+def maxCA(t) :
+    x = t.values
+    max_linie = np.argmax(x)
+    return pd.Series(data=[t.index[max_linie], x[max_linie]], index=['Activitate', 'Cifra  Afaceri'])
+
+t4 = t3[industrii].apply(func=maxCA, axis=1)
+t4.to_csv("./dataOUT/Cerinta2.csv")
+
+#CERINTA 3
+
+tabel = pd.read_csv('./dataIN/DataSet_34.csv', index_col=0)
+obs_nume = tabel.index.values
+var_nume = tabel.columns.values
+X_coloane = var_nume[:4]
+Y_coloane = var_nume[4:]
+
+X = tabel[X_coloane].values
+Y = tabel[Y_coloane].values
+
+def standardizare(x):
+
+    medii = np.mean(x, axis=0)
+    abateri = np.std(x, axis=0)
+    return (x-medii)/abateri
+
+Xstd = standardizare(X)
+Xstd_df = pd.DataFrame(data=Xstd, index=obs_nume, columns=X_coloane);
+Xstd_df.to_csv('./dataOUT/Xstd.csv')
+
+Ystd = standardizare(Y)
+Ystd_df = pd.DataFrame(data=Ystd, index=obs_nume, columns=Y_coloane);
+Ystd_df.to_csv('./dataOUT/Ystd.csv')
+
+#CERINTA 4
+#-CREARE MODEL ACC
+n, p = np.shape(X) #lasam doar shape de X pentru ca vrem sa luam si numarul de linii si nr de coloane, daca vrem doar nr de linii am pune [0]
+q = np.shape(Y)[1] #punem 1 pt ca vrem numarul de coloane, deoarece numarul de linii este egal pt ambele tabele si l-am salvat deja in n
+m = min(p,q)
+
+modelACC = skl.CCA(n_components=m)
+modelACC.fit(X=Xstd, Y=Ystd)
+
+#Varianta 1 pt aflare scoruri canonice
+# z = modelACC._x_scores
+# u = modelACC._y_scores
+
+#Varianta 2
+z,u = modelACC.transform(X=Xstd, Y=Ystd)
+
+z_df = pd.DataFrame(data=z, index=obs_nume, columns=('z' + str(j+1) for j in range(p)))
+u_df = pd.DataFrame(data=u, index=obs_nume, columns=('u' +str(j+1) for j in range(q)))
+z_df.to_csv("./dataOUT/Xscores.csv")
+u_df.to_csv("./dataOUT/Yscores.csv")
+
+#CERINTA 5
+
+Rxz = modelACC.x_loadings_
+Rxz_df = pd.DataFrame(data=Rxz, index=X_coloane, columns = ('z' + str(j+1) for j in range(p)))
+Rxz_df.to_csv('./dataOUT/Rxz.csv')
+Ryu = modelACC.y_loadings_
+Ryu_df = pd.DataFrame(data=Ryu, index=Y_coloane, columns=('u' +str(j+1) for j in range(q)))
+Ryu_df.to_csv('./dataOUT/Ryu.csv')
+
+#CERINTA 6
+
+def biplot(x,y, xLabel='X', yLabel='Y', titlu='Biplot', e1=None, e2=None):
+    f = plt.figure(figsize=(10,7))
+    ax = f.add_subplot(1, 1, 1)
+    assert isinstance(ax, plt.Axes)
+    ax.set_title(titlu, fontsize=14)
+    ax.set_xlabel(xLabel)
+    ax.set_ylabel(yLabel)
+    ax.scatter(x=x[:, 0], y=x[:, 1], c='r', label='Set x')
+    ax.scatter(x=y[:, 0], y=y[:, 1], c='b', label='Set Y')
+    if e1 is not None:
+        for i in range(len(e1)):
+            ax.text(x=x[i, 0], y=x[i, 1], s=e1[i])
+
+    if e2 is not None:
+        for i in range(len(e2)):
+            ax.text(x=y[i, 0], y=y[i, 1], s=e2[i])
+    ax.legend()
+
+biplot(z[:, :2], u[:, :2],titlu='Biplot tari in spatiul radacinilor canonice',
+       xLabel='(z1,u1)', yLabel = '(z2,u2)', e1=list(obs_nume), e2=list(obs_nume))
+plt.show()

@@ -1,0 +1,10 @@
+10001,140000,Popescu Marian,BMW,150
+10002,130000,Ionescu Maria,Mercedes,130
+10003,230000,Popa Mihai,Audi,180
+10004,13343400,Cazacu Robert,Mercedes,200
+10005,1374000,Mihailescu Valentin,BMW,220
+10006,2410000,Dobrogeanu Iulian,Mercedes,900
+10007,3360000,Pacurar Alexandra,Audi,300
+10008,42000,Neacsu Ruxandra,BMW,140
+10009,140000,Ionescu Vasiliu,Mercedes,300
+10010,6470000,Togan Bogdan,BMW,270
